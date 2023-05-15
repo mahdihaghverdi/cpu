@@ -1,7 +1,0 @@
-v 4
-file . "cu_tb.vhdl" "d5344fcc39dbc31baf135edaa15e4c80af6bcd00" "20230515121942.789":
-  entity controlunittb at 1( 0) + 0 on 13;
-  architecture tb of controlunittb at 7( 88) + 0 on 14;
-file . "cu.vhdl" "893aa6957f16b3e791e94e42aeec5ba14c1a3550" "20230515120503.703":
-  entity controlunit at 1( 0) + 0 on 11;
-  architecture arch of controlunit at 16( 277) + 0 on 12;
