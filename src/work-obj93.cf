@@ -1,0 +1,4 @@
+v 4
+file . "cu.vhdl" "893aa6957f16b3e791e94e42aeec5ba14c1a3550" "20230515120503.703":
+  entity controlunit at 1( 0) + 0 on 11;
+  architecture arch of controlunit at 16( 277) + 0 on 12;
