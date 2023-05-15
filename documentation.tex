@@ -25,6 +25,7 @@
 \usetikzlibrary{calc}
 %------------------------------------------------------------
 
+\usepackage{float}
 \usepackage{rotating}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -326,21 +327,9 @@ add $r1, $r2, $r3
 		
 		\section{Control Unit Signals Table}
 		
-		There are some zeros and ones in the table \nameref{sec:table:cu}, here are the meanings:
-		
-		In \texttt{RegDst}, \texttt{0} means: \texttt{Rt} in the instruction and \texttt{1} means: \texttt{Rd}.
-		
-		In \texttt{ALUSrc}, \texttt{0} means: a register and \texttt{1} means \texttt{immediate value}.
-		
-		In \texttt{MemToReg}, \texttt{0} means: \texttt{from ALU result to a register} and \texttt{1} means \texttt{from memory to a register},
-		
-		In \texttt{RegWrite}, \texttt{1} means: write to register from ALU.
-		
-		In \texttt{MemWrite}, \texttt{1} means: write to memory from ALU.
-		
-		In \texttt{Branch}, \texttt{1} means: put one in the branch \texttt{and} gate.
-		
-		\begin{sidewaystable}[t]
+			The meaning of zeros and ones in the table, are explained in the footnote of the table.
+					
+		\begin{sidewaystable}
 			\caption{Control Unit Signals}
 			\begin{center}
 				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -361,7 +350,7 @@ add $r1, $r2, $r3
 					\hline
 					\hline
 					\texttt{RegDst} & 
-					\texttt{1} &
+					\texttt{1}\footnote{\texttt{Rd}} &
 					\texttt{1} &
 					\texttt{1} &
 					\texttt{1} &
@@ -369,12 +358,13 @@ add $r1, $r2, $r3
 					\texttt{1} &
 					\texttt{1} &
 					\texttt{x} &
-					\texttt{0} &
+					\texttt{0}\footnote{\texttt{Rt}} &
 					\texttt{x} &
 					\texttt{0} &
 					\texttt{0} \\
 					\hline
 					\texttt{ALUSrc} &
+					\texttt{0}\footnote{a register} &
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
@@ -382,14 +372,13 @@ add $r1, $r2, $r3
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
-					\texttt{0} &
-					\texttt{1} &
+					\texttt{1}\footnote{immediate value} &
 					\texttt{1} &
 					\texttt{1} &
 					\texttt{1} \\ 
 					\hline
 					\texttt{MemToReg} &
-					\texttt{0} &
+					\texttt{0}\footnote{from ALU result to a register} &
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
@@ -397,13 +386,13 @@ add $r1, $r2, $r3
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{x} &
-					\texttt{1} &
+					\texttt{1}\footnote{from memory to a register} &
 					\texttt{x} &
 					\texttt{0} &
 					\texttt{0} \\ 
 					\hline
 					\texttt{RegWrite} &
-					\texttt{1} &
+					\texttt{1}\footnote{write to register from ALU} &
 					\texttt{1} &
 					\texttt{1} &
 					\texttt{1} &
@@ -426,7 +415,7 @@ add $r1, $r2, $r3
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
-					\texttt{1} &
+					\texttt{1}\footnote{write to memory from ALU} &
 					\texttt{0} &
 					\texttt{0} \\ 
 					\hline
@@ -438,7 +427,7 @@ add $r1, $r2, $r3
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
-					\texttt{1} &
+					\texttt{1}\footnote{put one in the branch's \texttt{and} gate.} &
 					\texttt{0} &
 					\texttt{0} &
 					\texttt{0} &
@@ -463,11 +452,24 @@ add $r1, $r2, $r3
 		\end{sidewaystable}\label{sec:table:cu}
 	
 		\section{Control Unit Design}
-			\begin{center}
-				\includegraphics[width=13cm, height=10cm]{./images/cu}
-			\end{center}
-			\begin{center}
-				\includegraphics[width=13cm, height=10cm]{./images/aluctrl}
-			\end{center}
+			\begin{figure}[H]
+				\begin{center}
+					\includegraphics[width=16cm, height=13cm, angle=90]{./images/cu}
+				\end{center}
+			\caption{Main Control Unit Design}
+			\end{figure}
 			
+			\begin{figure}[H]
+				\begin{center}
+					\includegraphics[width=18cm, height=13cm, angle=90]{./images/aluctrl}
+				\end{center}
+				\caption{ALU Control truth table}							
+			\end{figure}
+		
+			\begin{figure}[H]
+				\begin{center}
+					\includegraphics[width=18cm, height=13cm, angle=90]{./images/aluctl}
+				\end{center}
+				\caption{ALU Control Design}							
+			\end{figure}
 \end{document}
