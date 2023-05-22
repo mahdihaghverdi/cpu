@@ -5,3 +5,7 @@
 *.toc
 *.vcd
 *.cf
+
+.venv
+.idea
+poetry.lock
