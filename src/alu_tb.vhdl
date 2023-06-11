@@ -9,7 +9,7 @@ architecture tb of alu_tb is
     signal input_a, input_b : unsigned(7 downto 0);
     signal output           : unsigned(7 downto 0);
     signal carry_borrow     : std_logic;
-    signal sel              : std_logic_vector (1 downto 0);
+    signal sel              : std_logic_vector (2 downto 0);
 
 begin
     UUT : entity work.alu port map (
@@ -22,5 +22,14 @@ begin
 
     input_a <= "00000000", "00000100" after 20 ns;
     input_b <= "00000000", "00000010" after 20 ns;
-    sel <= "00", "00" after 20 ns, "01" after 40 ns, "10" after 60 ns, "11" after 80 ns, "11" after 100 ns;
+    sel <= "000",
+           "000" after 20 ns,
+           "001" after 40 ns,
+           "010" after 60 ns,
+           "011" after 80 ns,
+           "100" after 100 ns,
+           "101" after 120 ns,
+           "110" after 140 ns,
+           "111" after 160 ns,
+           "111" after 180 ns;
 end tb;
