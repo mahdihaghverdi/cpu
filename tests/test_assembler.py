@@ -2,7 +2,7 @@ import tempfile
 
 import pytest
 
-from Assembler import _decode_line, compile_assembly, read_assembly, assemble
+from pyasm import _decode_line, compile_assembly, read_assembly, assemble
 
 
 @pytest.fixture(scope="function")
