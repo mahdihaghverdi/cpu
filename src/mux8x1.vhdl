@@ -11,9 +11,9 @@ entity mux8x1 is
         i4,
         i5,
         i6,
-        i7    : in unsigned (7 downto 0);
+        i7    : in std_logic_vector (7 downto 0);
         sel   : in std_logic_vector (2 downto 0);
-        output: out unsigned (7 downto 0)
+        output: out std_logic_vector (7 downto 0)
     );
 end mux8x1;
 
