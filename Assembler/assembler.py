@@ -1,4 +1,3 @@
-import sys
 from pathlib import Path
 from typing import TypeAlias
 
@@ -12,23 +11,28 @@ def read_assembly(file: str | Path) -> tuple[Labels, list[Instruction]]:
     """Read the assembly file and remove the labels names from the front of the instruction
 
     This function will return the labels with their addresses and the label-removed assembly
+    Line numbering will start with one.
+    The line numbers are saved in decimal here.
     """
     labels = {}
     true_assembly = []
     with open(file) as f:
-        for num, line in enumerate(f, start=1):
-            """lines with labels:
-            ...
-            L1: add $r2, $r3, $r1
-            ... 
-            """
+        for num, instruction_line in enumerate(f, start=1):
+            # lines with labels:
+            # ...
+            # bnq $r1, $r2, L1
+            # L1: add $r2, $r3, $r1
+            # ...
             try:
-                label, rest = line.split(":")
+                # look for labels in the instruction
+                label, rest = instruction_line.split(":")
                 labels[label] = num
-                true_assembly.append(rest.strip())
+                true_assembly.append(rest.strip().strip('\n'))
             except ValueError:
-                true_assembly.append(line.strip('\n'))
-    return labels, list(filter(lambda x: bool(x), true_assembly))
+                # normal instruction
+                true_assembly.append(instruction_line.strip('\n'))
+    return labels, list(filter(lambda x: x, true_assembly))
+
 
 def _decode_line(instruction: str) -> str:
     return instruction.replace(',', ' ').replace('  ', ' ').strip().strip('\n')
@@ -142,7 +146,3 @@ def assemble(instructions: list[Instruction]):
                 f'{what_or_op}{rs}{rt}{rd_or_imm}' + ('0' * 14) + f'{op_or_funct}'
             )
     return final
-
-
-for line in assemble(compile_assembly(*read_assembly(sys.argv[1]))):
-    print(line)
