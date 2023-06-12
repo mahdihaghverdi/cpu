@@ -144,5 +144,7 @@ def assemble(instructions: list[Instruction]):
     return final
 
 
-for line in assemble(compile_assembly(*read_assembly(sys.argv[1]))):
-    print(line)
+with open('./machine.bin', 'w') as f:
+    for line in assemble(compile_assembly(*read_assembly(sys.argv[1]))):
+        print(line, file=f)
+

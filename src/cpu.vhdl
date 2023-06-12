@@ -5,7 +5,9 @@ use ieee.numeric_std.all;
 entity CPU is
     port (
         instruction : in std_logic_vector (31 downto 0);
-        output      : out std_logic_vector (7 downto 0)
+        output      : out std_logic_vector (7 downto 0);
+        a, b : out std_logic_vector(7 downto 0);
+        s : out std_logic_vector(2 downto 0)
     );
 end CPU;
 
@@ -56,6 +58,10 @@ begin
 
     input_b <= "0000" & tinput_b;
     input_a <= "0000" & rs;
+
+    a <= input_a;
+    b <= input_b;
+    s <= ALUControlSignal;
 
     alu : entity work.ALU port map (
         input_a => input_a,

@@ -33,14 +33,14 @@ begin
     mnand <= input_a nand input_b;
 
     inner_mux : entity work.mux8x1 port map (
-        i0 => plus,
-        i1 => minus,
-        i2 => mul,
-        i3 => mand,
-        i4 => mor,
-        i5 => mnor,
-        i6 => mnand,
-        i7 => "11111111",
+        i0 => "00000000",
+        i1 => plus,
+        i2 => minus,
+        i3 => mul,
+        i4 => mand,
+        i5 => mor,
+        i6 => mnor,
+        i7 => mnand,
         sel => sel,
         output => output
     );
