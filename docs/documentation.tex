@@ -20,10 +20,7 @@ pdftitle=Plann,
 \newenvironment{sansserif}{\sffamily}{\normalfont}
 %------------------------------------------------------------
 
-% logic gates -----------------------------------------------
-\usepackage{circuitikz}
-\usetikzlibrary{calc}
-%------------------------------------------------------------
+\usepackage{adjustbox}
 \usepackage{float}
 \usepackage{rotating}
 \usepackage{graphicx}
@@ -128,6 +125,51 @@ Seyed Hussein Husseini \\
 \frontmatter
 \tableofcontents
 \mainmatter
+
+\chapter{Assembly}
+\begin{sansserif}
+	In this simple and short chapter, we will briefly explain the assembly language of our CPU
+\end{sansserif}
+
+The assembly language of our CPU looks like this:
+
+\begin{lstlisting}
+add $a1, $zero, $a2	
+\end{lstlisting}
+
+But how are is this language is formatted for us?
+look at this table:
+
+\begin{table}[H]
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Instruction format & command & register & register & register & don't care & funct \\
+\hline
+\texttt{R-type} & \texttt{add} & \texttt{\$a1} & \texttt{\$a2} & \texttt{\$a3} & \texttt{000...000} & \texttt{001}\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{\texttt{R-type} instruction assembly}
+\end{table}
+
+Which means: add \texttt{\$a1} to \texttt{\$a2} and store the value in \texttt{\$a3} registers.
+
+\begin{table}[H]
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Instruction format & command & register & register & immediate value \\
+\hline
+\hline
+\texttt{V-type} & \texttt{andi} & \texttt{\$l1} & \texttt{\$t8} & \texttt{00101...01002} \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\caption{\texttt{V-type} instruction assembly}
+\end{table}
+
+Which means: and \texttt{\$l1} with the imm value and store the result in \texttt{\$t8}.
 
 \chapter{ISA}\label{ch:isa}
 \begin{sansserif}
