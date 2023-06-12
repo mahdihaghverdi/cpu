@@ -71,11 +71,11 @@ def assemble(instructions: list[Instruction]):
         "or": lambda: ("000", "101"),
         "nor": lambda: ("000", "110"),
         "nand": lambda: ("000", "111"),
-        "bnq": lambda: (False, "111"),
-        "lw": lambda: (False, "001"),
-        "sw": lambda: (False, "010"),
-        "andi": lambda: (False, "100"),
-        "ori": lambda: (False, "101"),
+        "bnq": lambda: (None, "111"),
+        "lw": lambda: (None, "001"),
+        "sw": lambda: (None, "010"),
+        "andi": lambda: (None, "100"),
+        "ori": lambda: (None, "101"),
     }
     registers = {
         "$zero": "0000",
@@ -137,12 +137,12 @@ def assemble(instructions: list[Instruction]):
                 f"\t--> {command} {rs}, {rt}, {rd_or_imm}"
             ) from None
 
-        if not what_or_op:
+        if what_or_op is None:
             # v type
             if len(rd_or_imm) <= 21:
                 final.append(f"{op_or_funct}{rs}{rt}{rd_or_imm:0>21}")
             else:
-                raise SystemError(
+                raise SyntaxError(
                     f"Immediate value limit exceeded, line {num}:\n"
                     f"\t--> {command} {rs}, {rt}, {rd_or_imm}"
                 )

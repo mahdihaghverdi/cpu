@@ -2,7 +2,7 @@ import tempfile
 
 import pytest
 
-from Assembler import _decode_line, compile_assembly, read_assembly
+from Assembler import _decode_line, compile_assembly, read_assembly, assemble
 
 
 @pytest.fixture(scope="function")
@@ -81,5 +81,56 @@ def test_compile_assembly(create_tempfile):
     assert fo == "mul $r1, $r2, $r3"
 
 
-def test_assemble():
-    pass
+def test_assemble(create_tempfile):
+    with open(create_tempfile.name, "w") as f:
+        f.write("add $zero, $at, $t9\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Confused' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.write("add $zero, $t9, $at\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Register not found' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.write("add $t8, $at, 2\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Confused' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.write("add $t9, $at, $zero\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Register not found' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.write("hello $t8, $at, $zero\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Instruction not found' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.write("lw $t8, $at, 0000000000000000000001\n")
+    with pytest.raises(SyntaxError) as error:
+        assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    assert 'Immediate value' in error.value.__str__()
+
+    with open(create_tempfile.name, "w") as f:
+        f.writelines(
+            [
+                "add $a1, $a2, $a3\n",
+                "sub $l1, $l2, $l3\n",
+                "L2: bnq $zero, $at, L3\n",
+                "L3: mul $t1, $t2, $t3\n",
+            ]
+        )
+
+    instructions = assemble(compile_assembly(*read_assembly(create_tempfile.name)))
+    f, s, t, fo = instructions
+    assert f == '00000100011010000000000000000001'
+    assert s == '00001010110011100000000000000010'
+    assert t == '11100000001000000000000000000100'
+    assert fo == '00010001001101000000000000000011'
