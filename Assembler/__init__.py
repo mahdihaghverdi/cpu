@@ -1,1 +1,1 @@
-from .assembler import read_assembly, compile_assembly, assemble
+from .assembler import _decode_line, assemble, compile_assembly, read_assembly
