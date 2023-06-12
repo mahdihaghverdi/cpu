@@ -41,7 +41,7 @@ def _decode_line(instruction: str) -> str:
 def compile_assembly(
     labels: Labels, instructions: list[Instruction]
 ) -> list[Instruction]:
-    final = []
+    final: list[Instruction] = []
     for num, instr in enumerate(instructions, start=1):
         instr = _decode_line(instr)
         command, rs, rt, rd_or_imm = instr.split()
