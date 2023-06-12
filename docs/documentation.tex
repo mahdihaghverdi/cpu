@@ -515,4 +515,123 @@ Control Signal &
 \end{center}
 \caption{Main Control Unit Design}
 \end{figure}
+
+\chapter{ALU}
+\begin{sansserif}
+	ALU is the one  of the main units in all CPUs. It is the Arithmetic and Logic Unit, which actually executes the instruction. In this chapter we will look at the ALU of our CPU. Covered topics are:
+	
+	\begin{enumerate}
+		\item \nameref{sec:alu-ops}
+		\item \nameref{sec:alu-encode}
+		\item \nameref{sec:alu-design}
+		\item \nameref{sec:alu-sub}
+	\end{enumerate}
+\end{sansserif}
+
+\clearpage
+\section{ALU Operations}\label{sec:alu-ops}
+Our ALU according to the given ISA, has 7 different operations:
+\begin{enumerate}
+\item \texttt{add (a + b)}
+\item \texttt{sub (a - b)}
+\item \texttt{mul (a * b)}
+\item \texttt{and (a \& b)}\footnotemark[1]
+\item \texttt{or (a | b)}\footnotemark[1]
+\item \texttt{nor ($\sim$(a | b))}\footnotemark[1]
+\item \texttt{nand ($\sim$(a \& b))}\footnote{These logical operations are done bit by bit}
+\end{enumerate}
+
+\section{ALU Encoding}\label{sec:alu-encode}
+CPUs decide what to do according to the instruction, instructions are coded in a special way for each CPU; however ALUs do follow this behaviour. Here we see the ALU encoding:
+
+\begin{table}[H]
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{|c|c|}
+\hline
+\texttt{op} & \texttt{code} \\
+\hline
+\hline
+\texttt{add} & \texttt{001} \\
+\hline
+\texttt{sub} & \texttt{010} \\
+\hline
+\texttt{mul} & \texttt{011} \\
+\hline
+\texttt{and} & \texttt{100} \\
+\hline
+\texttt{or} & \texttt{101} \\
+\hline
+\texttt{nor} & \texttt{110} \\
+\hline
+\texttt{nand} & \texttt{111} \\
+\hline
+\end{tabular}
+\begin{tabular}{|c|c|c|}
+\hline
+\texttt{op} & \texttt{funct} & \texttt{alu-code} \\
+\hline
+\hline
+\texttt{add} & \texttt{001} & \texttt{001} \\
+\hline
+\texttt{sub} & \texttt{010} & \texttt{010} \\
+\hline
+\texttt{mul} & \texttt{011} & \texttt{011} \\
+\hline
+\texttt{and} & \texttt{100} & \texttt{100} \\
+\hline
+\texttt{or} & \texttt{101} & \texttt{101} \\
+\hline
+\texttt{nor} & \texttt{110} & \texttt{110} \\
+\hline
+\texttt{nand} & \texttt{11} & \texttt{111} \\
+\hline
+\end{tabular}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\texttt{op} & \texttt{opcode} & \multicolumn{2}{|c|}{\texttt{alu-code}} \\
+\hline
+\hline
+\texttt{bnq} & \texttt{111} & \texttt{sub} & \texttt{010} \\
+\hline
+\texttt{lw} & \texttt{001} & \texttt{add} & \texttt{001} \\
+\hline
+\texttt{sw} & \texttt{010} & \texttt{add} & \texttt{001} \\
+\hline
+\texttt{andi} & \texttt{100} & \texttt{and} & \texttt{100} \\
+\hline
+\texttt{ori} & \texttt{101} & \texttt{or} & \texttt{101} \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\section{ALU Design}\label{sec:alu-design}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=13cm]{./images/alu}
+\end{center}
+\end{figure}
+
+\clearpage
+\section{ALU Main Control Unit}\label{sec:alu-sub}
+All ALUs has a select port which tells them what to do! But how this select signal is produced? Well, according to the instructions which is fetched, this signal is produced. A hardware section in our CPU does that which is called: \texttt{ALU Sub-Control Unit}.
+
+This unit gets the \texttt{opcode} (and \texttt{funct}) from the instruction and decides what to do. 
+
+It is very simple and here it is the unit:
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth, height=7cm]{./images/alumainctrl}
+\end{center}
+\end{figure}
+
+\clearpage
+\subsection{ALU Sub-Control Unit}
+There is a small unit inside this unit, which again decides what to produce according to the \texttt{opcode} of the instruction:
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=10cm]{./images/aluctrl}
+\end{center}
+\end{figure}
+
 \end{document}
