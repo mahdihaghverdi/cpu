@@ -19,7 +19,6 @@ pdftitle=Plann,
 % environments ----------------------------------------------
 \newenvironment{sansserif}{\sffamily}{\normalfont}
 %------------------------------------------------------------
-
 \usepackage{adjustbox}
 \usepackage{float}
 \usepackage{rotating}
@@ -299,6 +298,7 @@ In this chapter we will look at the register file of the CPU and the design deci
 \item \nameref{sec:num-of-regs}
 \item \nameref{sec:name-of-regs}
 \item \nameref{sec:cap-of-regs}
+\item \nameref{sec:regfile-pic}
 \end{itemize}
 \end{sansserif} 
 
@@ -322,20 +322,30 @@ The registers are names as follows:
 \begin{enumerate}
 \item \texttt{\$zero}
 \item \texttt{\$at}
+\item \texttt{\$a\#}
+\begin{itemize}
 \item \texttt{\$a1}
 \item \texttt{\$a2}
 \item \texttt{\$a3}
+\end{itemize}
+\item \texttt{\$l\#}
+\begin{itemize}
 \item \texttt{\$l1}
 \item \texttt{\$l2}
 \item \texttt{\$l3}
-\item \texttt{\$t1}
-\item \texttt{\$t2}
-\item \texttt{\$t3}
-\item \texttt{\$t4}
-\item \texttt{\$t5}
-\item \texttt{\$t6}
-\item \texttt{\$t7}
-\item \texttt{\$t8}
+\end{itemize}
+\item \texttt{\$t\#}
+\begin{itemize}
+	\item \texttt{\$t1}
+	\item \texttt{\$t2}
+	\item \texttt{\$t3}
+	\item \texttt{\$t4}
+	\item \texttt{\$t5}
+	\item \texttt{\$t6}
+	\item \texttt{\$t7}
+	\item \texttt{\$t8}
+\end{itemize}
+
 \end{enumerate}
 
 \subsection{Register Specifications}
@@ -355,6 +365,14 @@ This is the register provided for the assembler to use on its own.
 
 \section{Capacity Of Registers}\label{sec:cap-of-regs}
 This CPU's registers are 32-bit registers with the capability of parallel load and read.
+
+\section{Register file design}\label{sec:regfile-pic}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=12cm]{./images/registerfile}
+\end{center}
+\end{figure}
+
 
 \chapter{Control Unit}
 \begin{sansserif}
