@@ -11,3 +11,9 @@
 poetry.lock
 
 __pycache__
+
+.asm
+.ruff_cache
+.pytest_cache
+.bin
+src/*.cf

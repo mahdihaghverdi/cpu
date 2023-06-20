@@ -39,7 +39,8 @@ def _decode_line(instruction: str) -> str:
 
 
 def compile_assembly(
-    labels: Labels, instructions: list[Instruction]
+    labels: Labels,
+    instructions: list[Instruction]
 ) -> list[Instruction]:
     final: list[Instruction] = []
     for num, instr in enumerate(instructions, start=1):
@@ -64,18 +65,18 @@ def compile_assembly(
 def assemble(instructions: list[Instruction]):
     final = []
     table = {
-        "add": lambda: ("000", "001"),
-        "sub": lambda: ("000", "010"),
-        "mul": lambda: ("000", "011"),
-        "and": lambda: ("000", "100"),
-        "or": lambda: ("000", "101"),
-        "nor": lambda: ("000", "110"),
-        "nand": lambda: ("000", "111"),
-        "bnq": lambda: (None, "111"),
-        "lw": lambda: (None, "001"),
-        "sw": lambda: (None, "010"),
-        "andi": lambda: (None, "100"),
-        "ori": lambda: (None, "101"),
+        "add": ("000", "001"),
+        "sub": ("000", "010"),
+        "mul": ("000", "011"),
+        "and": ("000", "100"),
+        "or": ("000", "101"),
+        "nor": ("000", "110"),
+        "nand": ("000", "111"),
+        "bnq": (None, "111"),
+        "lw": (None, "001"),
+        "sw": (None, "010"),
+        "andi": (None, "100"),
+        "ori": (None, "101"),
     }
     registers = {
         "$zero": "0000",
@@ -130,7 +131,7 @@ def assemble(instructions: list[Instruction]):
                 raise syntax_error from None
 
         try:
-            what_or_op, op_or_funct = table[command]()
+            what_or_op, op_or_funct = table[command]
         except KeyError:
             raise SyntaxError(
                 f"Instruction not found, line {num}:\n"
