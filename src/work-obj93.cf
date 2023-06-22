@@ -26,12 +26,12 @@ file . "mux4x1.vhdl" "de426206067bc947598be7d90cdd17563f9dc484" "20230515183049.
 file . "mux4x1_tb.vhdl" "700d63974d97945c114fea0f7adbc3286f1e0978" "20230515183052.687":
   entity mux4x1_tb at 1( 0) + 0 on 13;
   architecture arch of mux4x1_tb at 8( 106) + 0 on 14;
-file . "aluctrl_tb.vhdl" "982dfd69edc4e99b0d37e0f0220d68540c976f0a" "20230519191812.654":
-  entity aluctb at 1( 0) + 0 on 25;
-  architecture tb of aluctb at 7( 74) + 0 on 26;
-file . "testbenches/cu_tb.vhdl" "d5344fcc39dbc31baf135edaa15e4c80af6bcd00" "20230622162957.303":
-  entity controlunittb at 1( 0) + 0 on 237;
-  architecture tb of controlunittb at 7( 88) + 0 on 238;
+file . "testbenches/cu_tb.vhdl" "d5344fcc39dbc31baf135edaa15e4c80af6bcd00" "20230622164842.182":
+  entity controlunittb at 1( 0) + 0 on 247;
+  architecture tb of controlunittb at 7( 88) + 0 on 248;
 file . "testbenches/mux8x1_tb.vhdl" "3a5cf8875d301f7233b7bbc7009833ce0d7ec08d" "20230622164333.470":
   entity mux8x1_tb at 1( 0) + 0 on 243;
   architecture arch of mux8x1_tb at 7( 80) + 0 on 244;
+file . "testbenches/aluctrl_tb.vhdl" "3c8ecd159028b39e1ce30cfc318eb687e4bdaa72" "20230622164722.093":
+  entity aluctb at 1( 0) + 0 on 245;
+  architecture tb of aluctb at 7( 74) + 0 on 246;

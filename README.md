@@ -2,25 +2,50 @@
 Computer architecture project of the term.
 
 ## Overview
-This project was meant to study assembly, ISA, datapath and control unit of a simple cpu.
-We have given the ISA and the rest of the project was designed and written with our decisions.
+This project was meant to study assembly, ISA, datapath and control unit of a simple CPU.
+We were given the ISA and the rest of the project was designed and written with our decisions.
 The decisions are written completely in the documentation of the project.
 
 The CPU is written with `VHDL` language and the compilation is done with `GHDL 3.0.0` and simulation is shown by `gtkwave`. Instructions to install the dependencies and run the project are below. 
 
-### ALU
-The ALU component of the CPU supports seven operations (because this was olny needed by the given ISA)
+### CPU
+The cpu is the datapath controlled by the control unit of its own.
+This was the easy part of the project, the components were ready and we only have to connect the singals to the components
+
+The whole component structure of the project is:
+
+```
+CPU
+├── ALU
+│   └── MUX 8x1
+├── ALU Control
+└── Control Unit
+```
+
+#### ALU
+The ALU component of the CPU supports seven operations (because this was only needed by the given ISA)
 The simulation of the test bench of the ALU is here:
 
-![]()
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/sims-1.png)
 
 (**Note**: The `FF` result in the simulation is because I had to use a 8x1 MUX AND according to the documentation of the encoding of
 ISA and ALU select, when the `sel` is `000` the output is decided to be `FF`)
 
-### Control Unit
+##### MUX 8x1
+A very simple 8 to 1 multiplexer.
+
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/sims-3.png)
+
+#### ALU Control
+This component produces the ALU select signal according to the `opcode` and `funct` of the given instruction
+
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/sims-4.png)
+
+
+#### Control Unit
 Control unit signals are shown in a big table in the documentation and the result is shown here:
 
-![]()
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/sims-2.png)
 
 
 ### Instructions
@@ -50,20 +75,6 @@ which is:
 ------------------------------------------------
 |   100  | 1111 | 0000 | 000000000000000001110 |
 ------------------------------------------------
-```
-
-### CPU
-The cpu is the datapath controlled by the control unit of its own.
-This was the easy part of the project, the components were ready and we only have to connect the singals to the components
-
-The whole component structure of the project is:
-
-```
-CPU
-├── ALU
-│   └── mux8x1
-├── ALU Control
-└── Control Unit
 ```
 
 ## Assembler
@@ -103,3 +114,23 @@ The whole documentation of the project including explanations for:
 is [here](https://github.com/mahdihaghverdi/cpu/blob/main/docs/documentation.pdf).
 
 ## How to install and run
+In order to run the project (simulate it) You should have:
+- `GHDL 3.0.0`
+- `gtkwave`
+
+and for the assembler: 
+- `Python 3.10` and onwards
+
+Once you have them:
+```bash
+git clone https://github.com/mahdihaghverdi/cpu
+cd cpu/src
+ghdl -a mux8x1.vhdl
+ghdl -a alu.vhdl
+ghdl -a aluctrl.vhdl
+ghdl -a cu.vhdl
+ghdl -a cpu.vhdl
+ghdl -a textbenches/cpu_tb.vhdl
+ghdl -r cpu_tb --vcd=cpu.vcd
+gtkwave cpu.vcd
+```
