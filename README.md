@@ -95,23 +95,19 @@ This assembler API is written for internal use and the recommended way for you t
 python -m pyasm code.asm
 ```
 and the output:
-```
-pyasm 0.1.0 [Python 3.10.6] on Linux
-Assembling your code...
-Successfully Compiled! You can use `machine.bin` file.
-```
 
-For any improvements to the assembler (like using `argparse` module and a better API,) please create pull requests :) 
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/assembler.png)
+
+For any improvements to the assembler (like using `argparse` module and a better API,) please open pull requests :) 
 
 ## Documentation
 The whole documentation of the project including explanations for:
-- Assembly
-- ISA
-- Registers
-- Control Unit
-- ALU
 
-is [here](https://github.com/mahdihaghverdi/cpu/blob/main/docs/documentation.pdf).
+![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/doc.png)
+
+[The documentation](https://github.com/mahdihaghverdi/cpu/blob/main/docs/documentation.pdf).
+
+The documentation also includes the Lagisim pictures of the designed components.
 
 ## How to install and run
 In order to run the project (simulate it) You should have:
