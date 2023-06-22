@@ -62,7 +62,7 @@ def compile_assembly(
     return final
 
 
-def assemble(instructions: list[Instruction]):
+def assemble(instructions: list[Instruction]) -> list[str]:
     final = []
     table = {
         "add": ("000", "001"),

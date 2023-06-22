@@ -67,6 +67,30 @@ CPU
 ```
 
 ## Assembler
+The assembler of the project is written in a functional style with the API:
+```
+- assemble
+- compile_assembly
+- read_assembly
+```
+
+the usage of these:
+```
+assemble(compile_assembly(*(read_assembly(file.asm)))
+```
+
+This assembler API is written for internal use and the recommended way for you to use it, is:
+```bash
+python -m pyasm code.asm
+```
+and the output:
+```
+pyasm 0.1.0 [Python 3.10.6] on Linux
+Assembling your code...
+Successfully Compiled! You can use `machine.bin` file.
+```
+
+For any improvements to the assembler (like using `argparse` module and a better API,) please create pull requests :) 
 
 ## Documentation
 The whole documentation of the project including explanations for:
