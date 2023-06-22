@@ -100,12 +100,10 @@ and the output:
 
 For any improvements to the assembler (like using `argparse` module and a better API,) please open pull requests :) 
 
-## Documentation
+## [Documentation](https://github.com/mahdihaghverdi/cpu/blob/main/docs/documentation.pdf)
 The whole documentation of the project including explanations for:
 
 ![](https://github.com/mahdihaghverdi/cpu/blob/main/docs/images/doc.png)
-
-[The documentation](https://github.com/mahdihaghverdi/cpu/blob/main/docs/documentation.pdf).
 
 The documentation also includes the Lagisim pictures of the designed components.
 
