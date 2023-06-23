@@ -62,7 +62,7 @@ def compile_assembly(
     return final
 
 
-def assemble(instructions: list[Instruction]):
+def assemble(instructions: list[Instruction]) -> list[str]:
     final = []
     table = {
         "add": ("000", "001"),
@@ -149,6 +149,7 @@ def assemble(instructions: list[Instruction]):
                 )
         else:
             final.append(
-                f"{what_or_op}{rs}{rt}{rd_or_imm}" + ("0" * 14) + f"{op_or_funct}"
+                f"{what_or_op}{rs}{rt}{rd_or_imm}"
+                + ("0" * 14) + f"{op_or_funct}"
             )
     return final
