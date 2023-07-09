@@ -25,9 +25,9 @@ public class Instruction {
         if (typeValidation != null) { // R-type
             String[] register = type[1].split(", ");
             machineCode += "000" + // OpCode
-                    RegisterFile.callRegister(register[1]) + // rs
-                    RegisterFile.callRegister(register[2]) + // rt
-                    RegisterFile.callRegister(register[0]) + // rd
+                    RegisterFile.callRegister(register[0]) + // rs
+                    RegisterFile.callRegister(register[1]) + // rt
+                    RegisterFile.callRegister(register[2]) + // rd
                     "00000000000000" + // Don't Care
                     typeValidation; // Function
 
@@ -36,20 +36,20 @@ public class Instruction {
 
             if (type[0].equals("lw") || type[0].equals("sw")) { // sw & lw commands
                 String[] register = type[1].split(", ");
-                machineCode += RegisterFile.callRegister(register[1].substring(register[1].indexOf('(') + 1, register[1].indexOf(')'))) + // rs
-                        RegisterFile.callRegister(register[0].substring(0, 3)) + // rt
+                machineCode += RegisterFile.callRegister(register[0].substring(0, 3)) + // rs
+                        RegisterFile.callRegister(register[1].substring(register[1].indexOf('(') + 1, register[1].indexOf(')'))) + // rt
                         DecimalToBinary.extend(register[1].substring(0, register[1].indexOf('('))); // immediate
 
             } else {
                 String[] register = type[1].split(", ");
                 if (type[0].equals("bnq")) { // bnq commands
-                    machineCode += RegisterFile.callRegister(register[1]) + // rs
-                            RegisterFile.callRegister(register[0]) + // rt bvcxzrewq    09821`
+                    machineCode += RegisterFile.callRegister(register[0]) + // rs
+                            RegisterFile.callRegister(register[1]) + // rt
                             DecimalToBinary.extend(lable.get(register[2].trim())); // immediate
 
                 } else { // other commands
-                    machineCode += RegisterFile.callRegister(register[1]) + // rs
-                            RegisterFile.callRegister(register[0]) + // rt
+                    machineCode += RegisterFile.callRegister(register[0]) + // rs
+                            RegisterFile.callRegister(register[1]) + // rt
                             DecimalToBinary.extend(register[2]); // immediate
 
                 }
