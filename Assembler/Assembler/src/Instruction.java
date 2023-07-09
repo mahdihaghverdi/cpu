@@ -3,8 +3,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Instruction {
-    private static String machineCode = "";
-    private static Map<String,String> lable = new HashMap<>();
+    private static String machineCode;
+    private static Map<String, String> lable = new HashMap<>();
 
     public static String main(String instructs) {
         instructs = lable(instructs);
@@ -16,13 +16,13 @@ public class Instruction {
 
         return result;
     }
-
     private static String instruct(String instruct) {
+        machineCode = "";
         instruct = instruct.trim();
         String[] type = instruct.split(" ", 2); // Command Type Separation
         String typeValidation = R_type.callOrder(type[0]); // To help with validation
 
-        if (false) { // R-type
+        if (typeValidation != null) { // R-type
             String[] register = type[1].split(", ");
             machineCode += "000" + // OpCode
                     RegisterFile.callRegister(register[1]) + // rs
@@ -44,8 +44,8 @@ public class Instruction {
                 String[] register = type[1].split(", ");
                 if (type[0].equals("bnq")) { // bnq commands
                     machineCode += RegisterFile.callRegister(register[1]) + // rs
-                            RegisterFile.callRegister(register[0]) + // rt
-                            DecimalToBinary.extend(lable.get(type[2].trim())); // immediate
+                            RegisterFile.callRegister(register[0]) + // rt bvcxzrewq    09821`
+                            DecimalToBinary.extend(lable.get(register[2].trim())); // immediate
 
                 } else { // other commands
                     machineCode += RegisterFile.callRegister(register[1]) + // rs
@@ -67,7 +67,7 @@ public class Instruction {
             String place = scanner.nextLine();
 
             if (place.indexOf(':') != -1) {
-                lable.put(place.substring(0, place.indexOf(':')).trim(), Integer.toBinaryString(count)); // lables
+                lable.put(place.substring(0, place.indexOf(':')).trim(), Integer.toString(count)); // lables
                 instruct += place.substring(place.indexOf(':') + 1) + "\n";
             } else {
                 instruct += place + "\n";
