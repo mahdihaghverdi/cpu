@@ -1,34 +1,37 @@
 v 4
-file . "cpu.vhdl" "5c301609ed64f4db38c56877191930da59602670" "20230614063703.949":
-  entity cpu at 1( 0) + 0 on 217;
-  architecture arch of cpu at 14( 320) + 0 on 218;
-file . "mux8x1.vhdl" "c6bf78fa0f284090fe6d976af964f33c50a6f983" "20230611202344.214":
-  entity mux8x1 at 1( 0) + 0 on 149;
-  architecture arch of mux8x1 at 20( 352) + 0 on 150;
-file . "cu.vhdl" "893aa6957f16b3e791e94e42aeec5ba14c1a3550" "20230521145517.711":
-  entity controlunit at 1( 0) + 0 on 27;
-  architecture arch of controlunit at 16( 277) + 0 on 28;
-file . "aluctrl.vhdl" "51e1463fe0bd39df06ceec7cdc2491c76e2abf76" "20230519191803.296":
-  entity alucontrol at 1( 0) + 0 on 23;
-  architecture arch of alucontrol at 12( 250) + 0 on 24;
-file . "alu.vhdl" "5b2103013bfdaaba41cb682686c6b18782d7b17d" "20230614063700.104":
-  entity alu at 1( 0) + 0 on 215;
-  architecture arch of alu at 15( 336) + 0 on 216;
+file . "testbenches/cpu_tb.vhdl" "657bf4d8f8931ca9da2be786f3467b5289060b02" "20230622162537.369":
+  entity cpu_tb at 1( 0) + 0 on 235;
+  architecture tb of cpu_tb at 8( 100) + 0 on 236;
+file . "testbenches/alu_tb.vhdl" "726059e3f078913b53afcc2fc2001fbe0157eb6b" "20230622152057.469":
+  entity alu_tb at 1( 0) + 0 on 223;
+  architecture tb of alu_tb at 8( 100) + 0 on 224;
+file . "cpu.vhdl" "5c301609ed64f4db38c56877191930da59602670" "20230622162532.489":
+  entity cpu at 1( 0) + 0 on 233;
+  architecture arch of cpu at 14( 320) + 0 on 234;
+file . "mux8x1.vhdl" "c6bf78fa0f284090fe6d976af964f33c50a6f983" "20230622164214.181":
+  entity mux8x1 at 1( 0) + 0 on 239;
+  architecture arch of mux8x1 at 20( 352) + 0 on 240;
+file . "cu.vhdl" "893aa6957f16b3e791e94e42aeec5ba14c1a3550" "20230622162526.561":
+  entity controlunit at 1( 0) + 0 on 231;
+  architecture arch of controlunit at 16( 277) + 0 on 232;
+file . "aluctrl.vhdl" "51e1463fe0bd39df06ceec7cdc2491c76e2abf76" "20230622162523.272":
+  entity alucontrol at 1( 0) + 0 on 229;
+  architecture arch of alucontrol at 12( 250) + 0 on 230;
+file . "alu.vhdl" "5b2103013bfdaaba41cb682686c6b18782d7b17d" "20230622162520.118":
+  entity alu at 1( 0) + 0 on 227;
+  architecture arch of alu at 15( 336) + 0 on 228;
 file . "mux4x1.vhdl" "de426206067bc947598be7d90cdd17563f9dc484" "20230515183049.319":
   entity mux4x1 at 1( 0) + 0 on 11;
   architecture arch of mux4x1 at 13( 259) + 0 on 12;
 file . "mux4x1_tb.vhdl" "700d63974d97945c114fea0f7adbc3286f1e0978" "20230515183052.687":
   entity mux4x1_tb at 1( 0) + 0 on 13;
   architecture arch of mux4x1_tb at 8( 106) + 0 on 14;
-file . "alu_tb.vhdl" "726059e3f078913b53afcc2fc2001fbe0157eb6b" "20230612072904.668":
-  entity alu_tb at 1( 0) + 0 on 207;
-  architecture tb of alu_tb at 8( 100) + 0 on 208;
-file . "aluctrl_tb.vhdl" "982dfd69edc4e99b0d37e0f0220d68540c976f0a" "20230519191812.654":
-  entity aluctb at 1( 0) + 0 on 25;
-  architecture tb of aluctb at 7( 74) + 0 on 26;
-file . "cu_tb.vhdl" "d5344fcc39dbc31baf135edaa15e4c80af6bcd00" "20230521145526.074":
-  entity controlunittb at 1( 0) + 0 on 29;
-  architecture tb of controlunittb at 7( 88) + 0 on 30;
-file . "cpu_tb.vhdl" "657bf4d8f8931ca9da2be786f3467b5289060b02" "20230614063707.535":
-  entity cpu_tb at 1( 0) + 0 on 219;
-  architecture tb of cpu_tb at 8( 100) + 0 on 220;
+file . "testbenches/cu_tb.vhdl" "d5344fcc39dbc31baf135edaa15e4c80af6bcd00" "20230622164842.182":
+  entity controlunittb at 1( 0) + 0 on 247;
+  architecture tb of controlunittb at 7( 88) + 0 on 248;
+file . "testbenches/mux8x1_tb.vhdl" "3a5cf8875d301f7233b7bbc7009833ce0d7ec08d" "20230622164333.470":
+  entity mux8x1_tb at 1( 0) + 0 on 243;
+  architecture arch of mux8x1_tb at 7( 80) + 0 on 244;
+file . "testbenches/aluctrl_tb.vhdl" "3c8ecd159028b39e1ce30cfc318eb687e4bdaa72" "20230622164722.093":
+  entity aluctb at 1( 0) + 0 on 245;
+  architecture tb of aluctb at 7( 74) + 0 on 246;
